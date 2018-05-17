@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="secured.tips">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icn"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FreeActivity"
+            android:label="   Free Tips" />
+        <activity
+            android:name=".PremiumActivity"
+            android:label="   VIP" />
+        <activity
+            android:name=".SubscribeActivity"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="Sign Up" />
+        <activity
+            android:name=".OverOneActivity"
+            android:label="   Over 1.5" />
+        <activity
+            android:name=".OverTwoActivity"
+            android:label="   Over 2.5" />
+        <activity
+            android:name=".DrawActivity"
+            android:label="   Draws" />
+        <activity
+            android:name=".FloatingActivity"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
+
+        <service android:name=".MyFirebaseServicee">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".PaystackActivity" />
+        <activity android:name=".FreePageActivity" />
+        <activity android:name=".VipPageActivity" />
+        <activity android:name=".MyProfileActivity" />
+        <activity android:name=".RoomsPageActivity"></activity>
+    </application>
+
+</manifest>

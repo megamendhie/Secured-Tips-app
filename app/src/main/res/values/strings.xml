@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Secured Tips</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-4597711656812814/3277699068</string>
+
+    <string name="hint_cvv">CVV</string>
+    <string name="hint_expiry_year">YY</string>
+    <string name="hint_expiry_month">MM</string>
+    <string name="hint_email">Enter your email address</string>
+    <string name="hint_card_number">Enter your card number</string>
+
+    <string name="button_text_create_token">Create token</string>
+
+    <string name="prompt_expiry">Expiry</string>
+    <string name="prompt_cvv">CVV</string>
+    <string name="prompt_token">Token:</string>
+
+
+    <string name="payment_prompt">select method</string>
+    <string name="currency_prompt">select currency</string>
+
+    <array name="payment_arrays">
+        <item>-select-</item>
+        <item>Western Union</item>
+        <item>Skrill</item>
+        <item>UBA</item>
+        <item>Mobile Money</item>
+        <item>M-pesa</item>
+    </array>
+    <array name="currency_arrays">
+        <item>US Dollar</item>
+        <item>British Pounds</item>
+        <item>Euro</item>
+        <item>Ghana Cedis</item>
+        <item>Kenyan Shilling</item>
+        <item>Nigerian Naira</item>
+        <item>South African Rand</item>
+        <item>others</item>
+    </array>
+
+    <array name="link_arrays">
+        <item>https://rave.flutterwave.com/pay/securedtipsusd1week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsusd2week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsusd1month</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsgbp1week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsgbp2week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsgbp1month</item>
+        <item>https://rave.flutterwave.com/pay/securedtipseur1week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipseur2week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipseur1month</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsghs1week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsghs2week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsghs1month</item>
+        <item>https://rave.flutterwave.com/pay/securedtipskes1week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipskes2week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipskes1month</item>
+        <item>https://rave.flutterwave.com/pay/securedtipngn1week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsngn2week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipsngn1month</item>
+        <item>https://rave.flutterwave.com/pay/securedtipszar1week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipszar2week</item>
+        <item>https://rave.flutterwave.com/pay/securedtipszar1month</item>
+    </array>
+    <array name="amount_arrays">
+        <item>12 USD</item>
+        <item>24 USD</item>
+        <item>35 USD</item>
+        <item>10 GBP</item>
+        <item>20 GBP</item>
+        <item>30 GBP</item>
+        <item>10 EUR</item>
+        <item>20 EUR</item>
+        <item>30 EUR</item>
+        <item>50 GHS</item>
+        <item>100 GHS</item>
+        <item>150 GHS</item>
+        <item>1100 KES</item>
+        <item>2100 KES</item>
+        <item>3100 KES</item>
+        <item>4000 NGN</item>
+        <item>8000 NGN</item>
+        <item>10000 NGN</item>
+        <item>130 ZAR</item>
+        <item>260 ZAR</item>
+        <item>400 ZAR</item>
+    </array>
+
+    <array name="period_arrays">
+        <item>1 month</item>
+        <item>2 weeks</item>
+        <item>1 week</item>
+    </array>
+
+    <string-array name="day_arrays">
+        <item>day</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+
+    <array name="month_arrays">
+        <item>month</item>
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </array>
+
+</resources>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true">
+
+<android.support.design.widget.AppBarLayout
+    android:id="@+id/layBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/CollapsingToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:expandedTitleMarginStart="48dp"
+        app:expandedTitleMarginEnd="64dp"
+        android:fitsSystemWindows="true"
+        app:contentScrim="?attr/colorPrimary"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            app:layout_collapseMode="parallax">
+
+            <ImageView
+                android:id="@+id/imgCover"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/bg_one" />
+
+            <ImageView
+                android:id="@+id/imgProfilePic"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/sean" />
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgProfilePic"
+                android:text="Rihanna Emmanuel"
+                android:textColor="@color/color_text"
+                android:layout_marginTop="10dp"
+                android:textStyle="normal|bold"
+                android:textSize="28sp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/txtUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:layout_marginTop="7dp"
+                android:textColor="#424242"
+                android:text="rihanna"
+                android:textSize="18sp"
+                android:layout_below="@id/txtName"
+                android:layout_alignStart="@id/imgProfilePic"/>
+
+            <ImageView
+                android:id="@+id/imgUsernameIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toLeftOf="@id/txtUsername"
+                android:layout_below="@id/txtName"
+                app:srcCompat="@drawable/symbol_at" />
+
+            <TextView
+                android:id="@+id/txtGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/color_text"
+                android:textSize="18sp"
+                android:text="female"
+                android:layout_alignTop="@+id/imgGenderIcon"
+                android:layout_alignStart="@+id/txtUsername" />
+
+            <ImageView
+                android:id="@+id/imgGenderIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtUsername"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/fui_ic_facebook_white_22dp"
+                android:layout_alignStart="@+id/imgUsernameIcon" />
+
+            <TextView
+                android:id="@+id/txtPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textSize="18sp"
+                android:textColor="@color/color_text"
+                android:text="280 points"
+                android:layout_alignTop="@+id/imgPointIcon"
+                android:layout_alignStart="@+id/txtUsername" />
+
+            <ImageView
+                android:id="@+id/imgPointIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgGenderIcon"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@android:drawable/btn_star_big_on"
+                android:layout_alignStart="@+id/imgUsernameIcon" />
+
+            <View
+                android:id="@+id/viewLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/imgPointIcon"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimaryDark"/>
+        </RelativeLayout>
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#9BC996"
+        app:tabGravity="fill"
+        app:tabMode="fixed"/>
+
+</android.support.design.widget.AppBarLayout>
+
+<android.support.v4.view.ViewPager
+    android:id="@+id/viewpager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>
+
