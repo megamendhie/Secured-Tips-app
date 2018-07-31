@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mfirebaseAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance("https://d-bet-98dcf-e81ed.firebaseio.com/").getReference();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = prefs.edit();
 
@@ -95,9 +95,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void registerUser(){
-        a3_username = edtUsername.getText().toString().trim();
         a1_firstName = edtFirstName.getText().toString().trim();
         a2_lastName = edtLastName.getText().toString().trim();
+        a3_username = edtUsername.getText().toString().trim();
         a4_email = edtEmail.getText().toString().trim();
         a5_phone = edtPhone.getText().toString().trim();
 

@@ -48,13 +48,16 @@
         <activity
             android:name=".FloatingActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
 
-        <service android:name=".MyFirebaseServicee">
+        <service android:name="datafiles.MyFirebaseServicee">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".MyService">
+        <service android:name="datafiles.MyService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
@@ -62,9 +65,15 @@
 
         <activity android:name=".PaystackActivity" />
         <activity android:name=".FreePageActivity" />
-        <activity android:name=".VipPageActivity" />
+        <activity
+            android:name=".VipPageActivity"
+            android:label="   TipZone" />
         <activity android:name=".MyProfileActivity" />
-        <activity android:name=".RoomsPageActivity"></activity>
+        <activity android:name=".RoomsPageActivity" />
+        <activity android:name=".AboutTipzoneActivity" />
+        <activity android:name=".ChatRoomActivity" />
+        <activity android:name=".MemberProfileActivity" />
+        <activity android:name=".ProfileEditActivity"></activity>
     </application>
 
 </manifest>

@@ -65,7 +65,6 @@ public class FreeActivity extends AppCompatActivity {
 
         adapt = new SectionedRecyclerViewAdapter();
         mRef = FirebaseDatabase.getInstance().getReference(database_path);
-        mRef.keepSynced(true);
 
         loadTips();
 

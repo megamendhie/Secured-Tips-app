@@ -13,6 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true">
+
     <android.support.design.widget.CollapsingToolbarLayout
         android:id="@+id/CollapsingToolbar"
         android:layout_width="match_parent"
@@ -36,6 +37,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <Button
+                    android:id="@+id/btnAbout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:theme="@style/bale"
+                    android:text="About TipZone"/>
+
             </RelativeLayout>
 
         </FrameLayout>
@@ -51,227 +60,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
             <android.support.v7.widget.CardView
-                android:id="@+id/crdProfile"
-                android:layout_width="160dp"
-                android:layout_height="180dp"
-                android:layout_margin="10dp"
-                android:elevation="6dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                card_view:cardUseCompatPadding="true">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:src="@drawable/forum"
-                        android:padding="6dp"
-                        android:background="@color/bckTint"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textStyle="bold|normal"
-                        android:text="10-50 odds"
-                        android:layout_marginTop="10dp"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="10dp"
-                        android:background="#37474f"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:text="View/edit your profile"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/crdForum"
-                android:layout_width="160dp"
-                android:layout_height="180dp"
-                android:layout_margin="10dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:elevation="6dp"
-                card_view:cardUseCompatPadding="true">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:padding="5dp"
-                        android:src="@drawable/forum"
-                        android:background="@color/bckTint"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textStyle="bold|normal"
-                        android:text="51-200 odds"
-                        android:layout_marginTop="10dp"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="10dp"
-                        android:background="#37474f"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:text="World of tipsters"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-            <android.support.v7.widget.CardView
-                android:id="@+id/crdFree"
-                android:layout_width="160dp"
-                android:layout_height="180dp"
-                android:layout_margin="10dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:elevation="6dp"
-                card_view:cardUseCompatPadding="true">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:padding="5dp"
-                        android:src="@drawable/forum"
-                        android:background="@color/bckTint"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textStyle="bold|normal"
-                        android:text="201-500 odds"
-                        android:layout_marginTop="10dp"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="10dp"
-                        android:background="#37474f"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:text="Free daily tips"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/crdVIP"
-                android:layout_width="160dp"
-                android:layout_height="180dp"
-                android:layout_margin="10dp"
-                android:elevation="6dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                card_view:cardUseCompatPadding="true">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:padding="5dp"
-                        android:src="@drawable/forum"
-                        android:background="@color/bckTint"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textStyle="bold|normal"
-                        android:text="500+"
-                        android:layout_marginTop="10dp"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="10dp"
-                        android:background="#37474f"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:text="Sure tips + draws"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-            <android.support.v7.widget.CardView
-                android:id="@+id/crdNews"
-                android:layout_width="160dp"
-                android:layout_height="180dp"
-                android:layout_margin="10dp"
-                android:elevation="6dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                card_view:cardUseCompatPadding="true">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:padding="6dp"
-                        android:src="@drawable/forum"
-                        android:background="@color/bckTint"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textStyle="bold|normal"
-                        android:text="Draws/Pools"
-                        android:layout_marginTop="10dp"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="10dp"
-                        android:background="#37474f"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:text="Sports news &amp; analysis"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/crdPayment"
+                android:id="@+id/crdRoomOne"
                 android:layout_width="160dp"
                 android:layout_height="180dp"
                 android:layout_margin="10dp"
@@ -307,7 +102,280 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="Subscription details"/>
+                        android:text="General discussion"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/crdRoomTwo"
+                android:layout_width="160dp"
+                android:layout_height="180dp"
+                android:layout_margin="10dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:elevation="6dp"
+                card_view:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:padding="5dp"
+                        android:src="@drawable/forum"
+                        android:background="@color/bckTint"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold|normal"
+                        android:text="3-10 odds"
+                        android:layout_marginTop="10dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:background="#37474f"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Normal"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_below="@+id/imgPointIcon"
+            android:background="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+            <android.support.v7.widget.CardView
+                android:id="@+id/crdRoomThree"
+                android:layout_width="160dp"
+                android:layout_height="180dp"
+                android:layout_margin="10dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:elevation="6dp"
+                card_view:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:padding="5dp"
+                        android:src="@drawable/forum"
+                        android:background="@color/bckTint"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold|normal"
+                        android:text="11-50 odds"
+                        android:layout_marginTop="10dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:background="#37474f"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Fantastic"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/crdRoomFour"
+                android:layout_width="160dp"
+                android:layout_height="180dp"
+                android:layout_margin="10dp"
+                android:elevation="6dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                card_view:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:padding="5dp"
+                        android:src="@drawable/forum"
+                        android:background="@color/bckTint"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold|normal"
+                        android:text="51-150 odds"
+                        android:layout_marginTop="10dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:background="#37474f"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Expert"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+            <android.support.v7.widget.CardView
+                android:id="@+id/crdRoomFive"
+                android:layout_width="160dp"
+                android:layout_height="180dp"
+                android:layout_margin="10dp"
+                android:elevation="6dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                card_view:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:padding="6dp"
+                        android:src="@drawable/forum"
+                        android:background="@color/bckTint"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold|normal"
+                        android:text="151-500 odds"
+                        android:layout_marginTop="10dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:background="#37474f"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Pro"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/crdRoomSix"
+                android:layout_width="160dp"
+                android:layout_height="180dp"
+                android:layout_margin="10dp"
+                android:elevation="6dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                card_view:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/forum"
+                        android:padding="6dp"
+                        android:background="@color/bckTint"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold|normal"
+                        android:text="500+"
+                        android:layout_marginTop="10dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:background="#37474f"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Genius"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_below="@+id/imgPointIcon"
+            android:background="@color/colorPrimaryDark" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+            <android.support.v7.widget.CardView
+                android:id="@+id/crdRoomSeven"
+                android:layout_width="160dp"
+                android:layout_height="180dp"
+                android:layout_margin="10dp"
+                android:elevation="6dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                card_view:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/forum"
+                        android:padding="6dp"
+                        android:background="@color/bckTint"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold|normal"
+                        android:text="Draws"
+                        android:layout_marginTop="10dp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:background="#37474f"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Pools &amp; draws"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 

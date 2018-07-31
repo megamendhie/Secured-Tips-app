@@ -40,12 +40,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ProgressDialog progressDialog;
     FirebaseUser user;
     int intType;
-    boolean active = true;
+    boolean active = false;
 
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
 
     ActionBar actionBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if(task.isSuccessful()){
-                    startActivity(new Intent(getApplicationContext(), SubscribeActivity.class));
+                    //startActivity(new Intent(getApplicationContext(), SubscribeActivity.class));
                     editor.putString("PASSWORD", edtPassword.getText().toString().trim());
                     editor.putString("EMAIL", edtEmail.getText().toString().trim());
                     editor.apply();
@@ -127,9 +128,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(this, PremiumActivity.class));
         }else if(intType==2){
             startActivity(new Intent(this, DrawActivity.class));
-        }
-        if(checkSub()){
-            startActivity(new Intent(getApplicationContext(), SubscribeActivity.class));
         }
     }
 
