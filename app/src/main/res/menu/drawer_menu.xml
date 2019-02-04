@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/home_name" />
+        <item
+            android:id="@+id/nav_free"
+            android:icon="@drawable/ic_filter_tilt_shift_black_24dp"
+            android:title="@string/free_name" />
+        <item
+            android:id="@+id/nav_vip"
+            android:icon="@drawable/ic_filter_tilt_shift_black_24dp"
+            android:title="@string/vip_name" />
+        <item
+            android:id="@+id/nav_tipzone"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="@string/tipzone_name" />
+        <item
+            android:id="@+id/nav_subscribe"
+            android:icon="@drawable/ic_offline_pin_black_24dp"
+            android:title="@string/subscription_name" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_message_black_24dp"
+            android:title="@string/contact_name" />
+    </group>
+</menu>

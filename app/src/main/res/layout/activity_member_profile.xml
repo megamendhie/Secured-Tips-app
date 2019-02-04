@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -36,15 +35,16 @@
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/bg_one" />
 
-                <ImageView
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgProfilePic"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/dspc" />
+                    android:layout_marginTop="20dp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#bbd4b8"/>
 
                 <TextView
                     android:id="@+id/txtName"
@@ -53,7 +53,7 @@
                     android:layout_below="@+id/imgProfilePic"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="_"
+                    android:text="name"
                     android:textColor="@color/color_text"
                     android:textSize="24sp"
                     android:textStyle="normal|bold" />
@@ -62,8 +62,8 @@
                     android:id="@+id/txtUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/imgProfilePic"
                     android:layout_below="@+id/txtName"
+                    android:layout_centerHorizontal="true"
                     android:inputType="textPersonName"
                     android:text="username"
                     android:textColor="#424242"
@@ -83,7 +83,7 @@
                     android:id="@+id/txtGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/imgProfilePic"
+                    android:layout_alignStart="@+id/txtUsername"
                     android:layout_below="@+id/txtUsername"
                     android:inputType="textPersonName"
                     android:text="gender"
@@ -94,17 +94,18 @@
                     android:id="@+id/imgGenderIcon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
+                    android:tint="@color/colorPrimary"
                     android:layout_alignStart="@+id/imgUsernameIcon"
                     android:layout_below="@+id/txtUsername"
                     android:layout_marginTop="5dp"
-                    app:srcCompat="@drawable/fui_ic_facebook_white_22dp" />
+                    app:srcCompat="@drawable/m_icn" />
 
                 <TextView
                     android:id="@+id/txtPoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/imgProfilePic"
-                    android:layout_below="@+id/txtGender"
+                    android:layout_alignStart="@+id/txtUsername"
+                    android:layout_below="@+id/imgGenderIcon"
                     android:text="0 points"
                     android:textColor="@color/color_text"
                     android:textSize="18sp" />
@@ -114,17 +115,183 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_alignStart="@+id/imgUsernameIcon"
-                    android:layout_below="@+id/imgGenderIcon"
+                    android:layout_below="@id/imgGenderIcon"
                     android:layout_marginTop="5dp"
                     app:srcCompat="@android:drawable/btn_star_big_on" />
+
+                <TextView
+                    android:id="@+id/txtPerformance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Performance:"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:layout_below="@id/imgPointIcon"/>
+
+                <LinearLayout
+                    android:id="@+id/lnrPoints"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_below="@id/txtPerformance"
+                    android:background="#9BC996">
+                    <LinearLayout
+                        android:id="@+id/lnr1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3-10"/>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:tint="#FF0000"
+                            android:src="@drawable/trend"/>
+                        <TextView
+                            android:id="@+id/txtPoint1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lnr2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11-50"/>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:tint="#FF7F00"
+                            android:src="@drawable/trend"/>
+                        <TextView
+                            android:id="@+id/txtPoint2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lnr3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="51-100"/>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/trend"
+                            android:tint="#FFFF00" />
+                        <TextView
+                            android:id="@+id/txtPoint3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lnr4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="101+"/>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/trend"
+                            android:tint="@color/colorPrimaryDark" />
+                        <TextView
+                            android:id="@+id/txtPoint4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lnr5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        android:gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/trend"
+                            android:tint="#0000FF" />
+                        <TextView
+                            android:id="@+id/txtPoint5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lnr6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Draws"/>
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/trend"
+                            android:tint="#4B0082" />
+                        <TextView
+                            android:id="@+id/txtPoint6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"/>
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <View
                     android:id="@+id/viewLine"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@+id/imgPointIcon"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/lnrPoints"
                     android:background="@color/colorPrimaryDark" />
+
+
             </RelativeLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
 

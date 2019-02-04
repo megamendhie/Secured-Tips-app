@@ -6,56 +6,88 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView;
+import android.widget.ProgressBar;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import datafiles.Cache;
 import datafiles.ChatMessage;
 import datafiles.MessageAdapter;
+import datafiles.MyHashtagHelper;
+import datafiles.NewsFunction;
+import datafiles.TipzoneActivity;
 
-public class ChatRoomActivity extends AppCompatActivity {
+public class ChatRoomActivity extends TipzoneActivity{
     static int room = 1;
     private boolean login = false;
     FirebaseUser user;
     String userID="x";
     String userName;
-    Cache cacher = new Cache();
-    private Map<String, Boolean> message_likes = new HashMap<>();;
+    String subRoom;
+    FirebaseDatabase chatDatabase;
+    private Map<String, Boolean> message_likes = new HashMap<>();
     private final String TAG = "SecuredChat";
     private ListView listView;
     private DatabaseReference mRef;
     private FirebaseListAdapter<ChatMessage> adapter;
     private FloatingActionButton btnSend;
+    private MyHashtagHelper mHastagHelper;
     ActionBar actionBar;
+    Object timestampCreated;
+    ProgressBar loader;
+    String[] clubs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
+        getWindow().setBackgroundDrawableResource(R.drawable.chatroom_bg);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        message_likes.put("00default", true);
+        chatDatabase = FirebaseDatabase.getInstance("https://d-bet-98dcf-e1240.firebaseio.com/");
+        chatDatabase.goOffline();
+        chatDatabase.goOnline();
 
-        final EditText input = findViewById(R.id.input);
+        message_likes.put("00default", true);
+        char[] additionalSymbols = new char[]{'@'};
+        mHastagHelper = MyHashtagHelper.Creator.create(getResources().getColor(R.color.hastag), null, additionalSymbols);
+
+        clubs = getResources().getStringArray(R.array.club_arrays);
+        ArrayAdapter<String> club_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, clubs);
+        final MultiAutoCompleteTextView input = findViewById(R.id.input);
+        input.setAdapter(club_adapter);
+        input.setTokenizer(new SpaceTokenizer());
+        input.setThreshold(3);
+        input.setOnClickListener((View v)-> {
+                listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_NORMAL);
+                Log.i(TAG, "onClick: Input");
+        });
+        mHastagHelper.handle(input);
+
         user = FirebaseAuth.getInstance().getCurrentUser();
-        String subRoom = selectDatabase();
-        mRef = FirebaseDatabase.getInstance("https://d-bet-98dcf-e1240.firebaseio.com/").getReference().child("chatrooms").child(subRoom);
+        subRoom = selectDatabase();
+        mRef = chatDatabase.getReference().child("chatrooms").child(subRoom);
         mRef.keepSynced(true);
         if(user!=null){
             login = true;
@@ -63,27 +95,38 @@ public class ChatRoomActivity extends AppCompatActivity {
             userName = user.getDisplayName();
         }
         listView = findViewById(R.id.list);
+        listView.setDrawingCacheEnabled(true);
+        listView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         btnSend = findViewById(R.id.fab);
-        showOldMesseges();
+        loader =  findViewById(R.id.loader);
+        listView.setEmptyView(loader);
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        showOldMesseges();
+        listView.smoothScrollToPosition(adapter.getCount()-1);
+
+        attachKeyboardListeners();
+        adapter.startListening();
+
+        btnSend.setOnClickListener((View view) -> {
                 if(user!=null){
+                    if(!NewsFunction.isNetworkAvailable(getApplicationContext())) {
+                        popUp2();
+                        return;
+                    }
+
                     if (input.getText().toString().trim().equals("")) {
                     } else {
-                        mRef
-                                .push()
-                                .setValue(new ChatMessage(userName, input.getText().toString(),
-                                        userID, "2_"+userID, 0, message_likes));
+                        timestampCreated = ServerValue.TIMESTAMP;
+                        mRef.push()
+                             .setValue(new ChatMessage(userName, input.getText().toString(),
+                             userID, "2_"+userID, 0, message_likes));
                         input.setText("");
+                        Log.i(TAG, "systemTime: " + new Date().getTime());
                     }
                 }
                 else{
                     popUp();
                 }
-
-            }
         });
 
         input.addTextChangedListener(new TextWatcher() {
@@ -104,7 +147,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
             }
         });
-
     }
 
     public void popUp(){
@@ -117,6 +159,18 @@ public class ChatRoomActivity extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //do nothing
+                    }
+                })
+                .show();
+    }
+
+    public void popUp2(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
+        builder.setMessage("No Internet connection")
+                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //do nothing
@@ -140,6 +194,8 @@ public class ChatRoomActivity extends AppCompatActivity {
                 return "room_5";
             case 6:
                 return "room_6";
+            case 7:
+                return "room_7";
             default:
                 return "room_1";
         }
@@ -149,9 +205,8 @@ public class ChatRoomActivity extends AppCompatActivity {
         return user;
     }
 
-
     private void showOldMesseges(){
-        adapter = new MessageAdapter(this, ChatMessage.class, R.layout.mammy, mRef, userID, selectDatabase(), this);
+        adapter = new MessageAdapter(this, ChatMessage.class, R.layout.mssg_in, mRef, userID, selectDatabase(), this);
         listView.setAdapter(adapter);
         Log.i(TAG, "messages shown");
     }
@@ -165,8 +220,11 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         user = FirebaseAuth.getInstance().getCurrentUser();
+        mRef = chatDatabase.getReference().child("chatrooms").child(subRoom);
+        mRef.keepSynced(true);
         if(user!=null){
             if(login!=true){
+                adapter.stopListening();
                 userID = user.getUid();
                 userName = user.getDisplayName();
                 login=true;
@@ -174,19 +232,64 @@ public class ChatRoomActivity extends AppCompatActivity {
                 adapter.startListening();
             }
         }
-
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
+    protected void onHideKeyboard() {
+        // do things when keyboard is hidden
+        listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        Log.i(TAG, "onHideKeyboard: ");
     }
 
+    public class SpaceTokenizer implements MultiAutoCompleteTextView.Tokenizer {
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
+        public int findTokenStart(CharSequence text, int cursor) {
+            int i = cursor;
+
+            while (i > 0 && text.charAt(i - 1) != ' ') {
+                i--;
+            }
+            while (i < cursor && text.charAt(i) == ' ') {
+                i++;
+            }
+
+            return i;
+        }
+
+        public int findTokenEnd(CharSequence text, int cursor) {
+            int i = cursor;
+            int len = text.length();
+
+            while (i < len) {
+                if (text.charAt(i) == ' ') {
+                    return i;
+                } else {
+                    i++;
+                }
+            }
+
+            return len;
+        }
+
+        public CharSequence terminateToken(CharSequence text) {
+            int i = text.length();
+
+            while (i > 0 && text.charAt(i - 1) == ' ') {
+                i--;
+            }
+
+            if (i > 0 && text.charAt(i - 1) == ' ') {
+                return text;
+            } else {
+                if (text instanceof Spanned) {
+                    SpannableString sp = new SpannableString(text + " ");
+                    TextUtils.copySpansFrom((Spanned) text, 0, text.length(),
+                            Object.class, sp, 0);
+                    return sp;
+                } else {
+                    return text + " ";
+                }
+            }
+        }
     }
 }

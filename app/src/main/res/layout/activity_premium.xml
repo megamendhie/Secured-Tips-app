@@ -22,20 +22,17 @@ android:background="@drawable/bg">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"></LinearLayout>
-
-
-
+        <ProgressBar
+            android:id="@+id/prgBar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
         <android.support.v7.widget.RecyclerView
             android:nestedScrollingEnabled="false"
             android:id="@+id/recyclerTest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
-        <ProgressBar
-            android:id="@+id/prgBar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"/>
 
     </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

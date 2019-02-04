@@ -2,7 +2,25 @@
 <resources>
     <color name="colorPrimary">#208853</color>
     <color name="colorPrimaryDark">#1a7447</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#c71458</color>
     <color name="bckTint">#208853</color>
     <color name="color_text">#424242</color>
+    <color name="cl_dismissed">#592202</color>
+    <color name="splash">#bbd2cb</color>
+    <color name="hastag">#347aec</color>
+
+    <color name="rm1">#000000</color>
+    <color name="rm2">#FF0000</color>
+    <color name="rm3">#FF7F00</color>
+    <color name="rm4">#e9e902</color>
+    <color name="rm5">#1a7447</color>
+    <color name="rm6">#0000FF</color>
+    <color name="rm7">#4B0082</color>
+
+
+    <color name="col1">#8E24AA</color>
+    <color name="col2">#6200EA</color>
+    <color name="col3">#FF6D00</color>
+    <color name="col4">#283593</color>
+    <color name="col5">#FF4081</color>
 </resources>

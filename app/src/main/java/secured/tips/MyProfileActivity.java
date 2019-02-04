@@ -1,9 +1,7 @@
 package secured.tips;
 
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,15 +12,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,51 +30,72 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyProfileActivity extends AppCompatActivity {
+import datafiles.GlideApp;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class MyProfileActivity extends AppCompatActivity implements View.OnClickListener {
     ActionBar actionBar;
     private TabLayout tabLayout;
-    String firstName, lastName, Username, gender, imageURL;
-    long points;
+    String firstName, lastName, Username, gender, imageURL, userID;
+    long totalPoints;
+    long[] point = new long[7];
+    TextView[] txtviewPoint = new TextView[7];
+    LinearLayout[] lnr = new LinearLayout[7];
     ImageView imgEdit;
     private ViewPager viewPager;
-    TextView txtName, txtUsername, txtGender, txtPoint;
+    TextView txtName, txtUsername, txtGender, txtPoint, txtWallet;
     DatabaseReference mDatabase;
     FirebaseAuth mfirebaseAuth;
     FirebaseUser user;
-    String userID;
     private Uri filePath;
-    ImageView imgProfile;
-    FirebaseStorage storage;
     StorageReference storageReference;
+    CircleImageView imgProfile;
+    ImageView imgGenderIcon;
+    RequestOptions requestOptions = new RequestOptions();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference().child("profile_images");
+        storageReference = FirebaseStorage.getInstance().getReference().child("profile_images");
 
         txtName = findViewById(R.id.txtName);
         txtGender = findViewById(R.id.txtGender);
         txtUsername= findViewById(R.id.txtUsername);
         txtPoint = findViewById(R.id.txtPoint);
+        txtWallet = findViewById(R.id.txtWallet);
+
+        //TextView for individual points
+        txtviewPoint[1] = findViewById(R.id.txtPoint1);
+        txtviewPoint[2] = findViewById(R.id.txtPoint2);
+        txtviewPoint[3] = findViewById(R.id.txtPoint3);
+        txtviewPoint[4] = findViewById(R.id.txtPoint4);
+        txtviewPoint[5] = findViewById(R.id.txtPoint5);
+        txtviewPoint[6] = findViewById(R.id.txtPoint6);
+
+        //Layout for individual points
+        lnr[1] = findViewById(R.id.lnr1); lnr[1].setOnClickListener(this);
+        lnr[2] = findViewById(R.id.lnr2); lnr[2].setOnClickListener(this);
+        lnr[3] = findViewById(R.id.lnr3); lnr[3].setOnClickListener(this);
+        lnr[4] = findViewById(R.id.lnr4); lnr[4].setOnClickListener(this);
+        lnr[5] = findViewById(R.id.lnr5); lnr[5].setOnClickListener(this);
+        lnr[6] = findViewById(R.id.lnr6); lnr[6].setOnClickListener(this);
+
         imgEdit = findViewById(R.id.imgEdit);
+        imgGenderIcon = findViewById(R.id.imgGenderIcon);
         imgProfile = findViewById(R.id.imgProfilePic);
+        requestOptions.placeholder(R.drawable.dspc);
         imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //grabImage();
-                //cropActivity();
                 startActivity(new Intent(getApplicationContext(), ProfileEditActivity.class));
             }
         });
@@ -85,6 +106,17 @@ public class MyProfileActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if(!task.isSuccessful()){
+                            return;
+                        }
+                        String token = task.getResult().getToken();
+                        Log.d("Token", "onComplete Token: "+token);
+                    }
+                });
 
         mfirebaseAuth = FirebaseAuth.getInstance();
         user = mfirebaseAuth.getCurrentUser();
@@ -97,27 +129,40 @@ public class MyProfileActivity extends AppCompatActivity {
                 lastName= dataSnapshot.child("a2_lastname").getValue(String.class);
                 Username= dataSnapshot.child("a3_username").getValue(String.class);
                 gender= dataSnapshot.child("a6_gender").getValue(String.class);
-                points= dataSnapshot.child("a8_points").getValue(long.class);
+                totalPoints= dataSnapshot.child("a8_points").getValue(long.class);
                 imageURL= dataSnapshot.child("a7_imageURL").getValue(String.class);
 
+                double cash = dataSnapshot.child("a9_payment").getValue(long.class);
+                point[1]= dataSnapshot.child("a8_points_2").getValue(long.class);
+                point[2]= dataSnapshot.child("a8_points_3").getValue(long.class);
+                point[3]= dataSnapshot.child("a8_points_4").getValue(long.class);
+                point[4]= dataSnapshot.child("a8_points_5").getValue(long.class);
+                point[5]= dataSnapshot.child("a8_points_6").getValue(long.class);
+                point[6]= dataSnapshot.child("a8_points_7").getValue(long.class);
+                for(int i=1; i<=6; i++){
+                    txtviewPoint[i].setText(String.valueOf(point[i]));
+                }
+
+                actionBar.setTitle(firstName + " " + lastName);
                 txtName.setText(firstName + " " + lastName);
                 txtUsername.setText(Username);
                 txtGender.setText(gender);
-                txtPoint.setText(String.valueOf(points) + " points");
-                StorageReference sRef = storageReference.child(userID);
-
-                if(imageURL!="none"){
-                    Glide.with(getApplicationContext()).load(imageURL).into(imgProfile);
-
-                    /*
-                    sRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            String imUri = uri.toString();
-                            Glide.with(getApplicationContext()).load(imUri).into(imgProfile);
-                        }
-                    });
-                    */
+                txtPoint.setText(String.valueOf(totalPoints) + " points");
+                String c = String.format("$%.2f", cash);
+                txtWallet.setText(c);
+                if(gender.toLowerCase().equals("female")){
+                    imgGenderIcon.setImageResource(R.drawable.f_icn);
+                }
+                if(imageURL.equals("none")){
+                    GlideApp.with(getApplicationContext())
+                            .load(R.drawable.dspc)
+                            .into(imgProfile);
+                }
+                else{
+                    GlideApp.with(getApplicationContext())
+                            .setDefaultRequestOptions(requestOptions)
+                            .load(imageURL)
+                            .into(imgProfile);
                 }
             }
 
@@ -126,32 +171,6 @@ public class MyProfileActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1){
-            if(data!=null){
-                try{
-                Bundle bundle = data.getExtras();
-                Bitmap bitmap = bundle.getParcelable("data");
-                imgProfile.setImageBitmap(bitmap);
-                }
-                catch (NullPointerException e){
-                    Toast.makeText(getApplicationContext(), "null error", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-        else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                filePath = result.getUri();
-                uploadImage();
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-            }
-        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -165,55 +184,6 @@ public class MyProfileActivity extends AppCompatActivity {
         finish();
         return true;
 
-    }
-
-    public void uploadImage(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Uploading...");
-        progressDialog.show();
-
-        StorageReference ref = storageReference.child(userID);
-        ref.putFile(filePath)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        String url = taskSnapshot.getDownloadUrl().toString();
-                        progressDialog.dismiss();
-                        mDatabase.child("a7_imageURL").setValue(url);
-                        Toast.makeText(MyProfileActivity.this, "Profile picture saved", Toast.LENGTH_SHORT).show();
-                        imgProfile.setImageURI(filePath);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
-                        Toast.makeText(MyProfileActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
-                                .getTotalByteCount());
-                        progressDialog.setMessage((int) progress + "%" + " uploaded" );
-                    }
-                })
-        ;
-    }
-
-    public void cropActivity(){
-       CropImage.activity()
-                .setFixAspectRatio(true)
-                .start(this);
-
-
-        //Start cropping activity for already acquired image
-        /*
-        CropImage.activity(filePath)
-                .setFixAspectRatio(true)
-                .start(this);
-        */
     }
 
     public void ImageCropFunction() {
@@ -238,6 +208,26 @@ public class MyProfileActivity extends AppCompatActivity {
         } catch (ActivityNotFoundException e) {
 
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        String popup="";
+        switch (view.getId()){
+            case R.id.lnr1:
+                popup="3-10 odds"; break;
+            case R.id.lnr2:
+                popup="11-50 odds"; break;
+            case R.id.lnr3:
+                popup="51-100 odds"; break;
+            case R.id.lnr4:
+                popup="101-350 odds"; break;
+            case R.id.lnr5:
+                popup="351+ odds"; break;
+            case R.id.lnr6:
+                popup="Draws"; break;
+        }
+        Toast.makeText(getApplicationContext(), popup, Toast.LENGTH_SHORT).show();
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

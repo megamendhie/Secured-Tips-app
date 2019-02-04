@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import datafiles.Cache;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ProgressDialog progressDialog;
     FirebaseUser user;
     int intType;
+    Cache cache;
     boolean active = false;
 
     SharedPreferences prefs;
@@ -56,6 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        cache  = new Cache(LoginActivity.this);
 
         mfirebaseAuth = FirebaseAuth.getInstance();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -107,12 +111,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if(task.isSuccessful()){
-                    //startActivity(new Intent(getApplicationContext(), SubscribeActivity.class));
                     editor.putString("PASSWORD", edtPassword.getText().toString().trim());
                     editor.putString("EMAIL", edtEmail.getText().toString().trim());
                     editor.apply();
                     Toast.makeText(getApplicationContext(), "Login successful.", Toast.LENGTH_SHORT).show();
                     user = mfirebaseAuth.getCurrentUser();
+                    final String userID = user.getUid();
+                    FirebaseDatabase.getInstance("https://d-bet-98dcf-e81ed.firebaseio.com/").getReference()
+                            .child("Users").child(userID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            boolean vipSub = dataSnapshot.child("b2_vip").getValue(boolean.class);
+                            boolean roomSub = dataSnapshot.child("b4_chat").getValue(boolean.class);
+                            cache.setUserID(userID);
+                            cache.setVipSub(vipSub);
+                            cache.setRoomSub(roomSub);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                     onBackPressed();
                 }else{
                     Toast.makeText(getApplicationContext(), "Sign in failed. Check your details", Toast.LENGTH_SHORT).show();
@@ -136,21 +156,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return true;
     }
 
-    public boolean checkSub(){
-        final String id = user.getUid();
-        mRef= FirebaseDatabase.getInstance().getReference("Active");
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(id)){
-                    active = true;
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        return active;
-    }
 }

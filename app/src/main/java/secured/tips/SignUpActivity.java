@@ -174,12 +174,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         details.put("a6_gender", a6_gender);
         details.put("a7_imageURL", a7_imageURL);
         details.put("a8_points", a8_points);
-        details.put("a8_points_1", 0);
         details.put("a8_points_2", 0);
         details.put("a8_points_3", 0);
         details.put("a8_points_4", 0);
         details.put("a8_points_5", 0);
+        details.put("a8_points_6", 0);
+        details.put("a8_points_7", 0);
         details.put("a9_payment", a9_payment);
+        details.put("b0_k", 0);
         details.put("b1_account", b1_account);
         details.put("b2_vip", b2_vip);
         details.put("b3_vip_ending", b3_vip_ending);
@@ -189,6 +191,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         Map<String, Object> update = new HashMap<>();
         update.put(key, details);
         mDatabase.updateChildren(update);
+
 
     }
 

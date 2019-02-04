@@ -2,23 +2,23 @@ package secured.tips;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,186 +28,221 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import datafiles.Cache;
+import datafiles.RecodeAdapter;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
-public class PremiumActivity extends AppCompatActivity implements OnClickListener {
+public class PremiumActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnSub;
-    private FirebaseAuth mfirebaseAuth;
+    DatabaseReference databaseRefToday, databaseRefWon, mDatabase;
+    FirebaseDatabase database;
     FirebaseUser user;
-    DatabaseReference mRef;
-    LinearLayout preToday;
+    String userID="x";
+    private boolean login = false;
     ActionBar actionBar;
-    String userID;
-    ProgressBar progressBar;
-    SectionedRecyclerViewAdapter adapt;
-
-    List<TipDetails> list = new ArrayList<TipDetails>();
-    RecyclerView recyclerView;
-
+    Button btnSub;
+    CardView crdSub, crdEmpty;
+    RecyclerView listToday, listWon;
+    SectionedRecyclerViewAdapter adapterToday, adapterWon;
+    List<DatabaseReference> refToday, refWon;
+    static InterstitialAd mInterstitialAd;
     LayoutInflater inflater;
-    View view;
+    ProgressBar prgToday, prgWon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_premium);
+        setContentView(R.layout.activity_vipp);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        database = FirebaseDatabase.getInstance();
+        crdSub = findViewById(R.id.crdSub);
+        crdEmpty = findViewById(R.id.crdEmpty);
+        prgToday = findViewById(R.id.prgToday);
+        prgWon = findViewById(R.id.prgWon);
+        listToday = findViewById(R.id.listToday);
+        listWon = findViewById(R.id.listWon);
+        btnSub = findViewById(R.id.btnSub); btnSub.setOnClickListener(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this);
+        listToday.setLayoutManager(linearLayoutManager);
+        listWon.setLayoutManager(linearLayoutManager2);
+        //listToday.setE
 
-        preToday = findViewById(R.id.preToday);
+        databaseRefToday = database.getReference().child("recommendedGames").child("VIP").child("main");
+        databaseRefToday.keepSynced(true);
+        databaseRefWon = database.getReference().child("recommendedGames").child("VIP").child("won");
+        databaseRefWon.keepSynced(true);
 
-        recyclerView = findViewById(R.id.recyclerTest);
-        recyclerView.setLayoutManager(new LinearLayoutManager(PremiumActivity.this));
-        progressBar = findViewById(R.id.prgBar);
-        progressBar.setVisibility(View.VISIBLE);
-
-        MobileAds.initialize(getApplicationContext(), "ca-app-pub-4597711656812814~3843067047");
-
-        loadAds();
-
-        adapt = new SectionedRecyclerViewAdapter();
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-4597711656812814/1799989807");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
         inflater = getLayoutInflater();
-        setLayout();
-    }
 
-    public void loadTipsZero(){
-        Log.i("Dame", "loading tips zero");
-        mRef = FirebaseDatabase.getInstance().getReference("Premium");
-        mRef.addValueEventListener(new ValueEventListener() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null){
+            login = true;
+            userID = user.getUid();
+            mDatabase = FirebaseDatabase.getInstance("https://d-bet-98dcf-e81ed.firebaseio.com/").getReference().child("Users").child(userID);
+            mDatabase.keepSynced(true);
+        }
+
+        adapterWon = new SectionedRecyclerViewAdapter(){
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                adapt.removeAllSections();
-                for (DataSnapshot datasnapshot : snapshot.getChildren()) {
-                    list = new ArrayList<TipDetails>();
-                    if(datasnapshot.getKey().toString().equals("day 1")){
-                        continue;
-                    }
-                    String date = datasnapshot.child("date").getValue(String.class);
-                    DataSnapshot tipsSnap =  datasnapshot.child("tips");
-                    list = loadAll(tipsSnap);
-                    adapt.addSection(new TipSection(date, list, getApplicationContext()));
-                    adapt.notifyDataSetChanged();
-                }
-                progressBar.setVisibility(View.GONE);
-                recyclerView.setAdapter(adapt);
+            public long getItemId(int position){return position;}
+
+            @Override
+            public void setHasStableIds(boolean hasStableIds){
+                super.setHasStableIds(hasStableIds);
             }
+        };
+
+        adapterToday = new SectionedRecyclerViewAdapter(){
+            @Override
+            public long getItemId(int position){return position;}
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                progressBar.setVisibility(View.GONE);
+            public void setHasStableIds(boolean hasStableIds){
+                super.setHasStableIds(hasStableIds);
+            }
+        };
+        setLayout();
+        mInterstitialAd.setAdListener(new AdListener(){
+            public void onAdLoaded(){
+                mInterstitialAd.show();
             }
         });
     }
 
     public void loadTips(){
-        Log.i("Dame", "loading tips");
-        mRef = FirebaseDatabase.getInstance().getReference("Premium");
-        mRef.addValueEventListener(new ValueEventListener() {
+        crdSub.setVisibility(View.GONE);
+        listToday.setVisibility(View.VISIBLE);
+        databaseRefToday.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                adapt.removeAllSections();
-                for (DataSnapshot datasnapshot : snapshot.getChildren()) {
-                    list = new ArrayList<TipDetails>();
-                    String date = datasnapshot.child("date").getValue(String.class);
-                    Log.i("Dame", date);
-                    if(date.toLowerCase().equals("nothing")){
-                        preToday.removeAllViews();
-                        view = inflater.inflate(R.layout.activity_prestory, null);
-                        preToday.addView(view);
-                        btnSub = (Button) findViewById(R.id.btnSub);
-                        btnSub.setVisibility(View.GONE);
-                        TextView txtInfo = (TextView)findViewById(R.id.txtInfo);
-                        txtInfo.setText("Today's tips not available yet. Pls check back.");
-                        continue;}
-                    DataSnapshot tipsSnap =  datasnapshot.child("tips");
-                    list = loadAll(tipsSnap);
-                    adapt.addSection(new TipSection(date, list, getApplicationContext()));
-                    adapt.notifyDataSetChanged();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                adapterToday.removeAllSections();
+                refToday = new ArrayList<DatabaseReference>();
+                if(!dataSnapshot.hasChildren()){
+                    prgToday.setVisibility(View.GONE);
+                    crdEmpty.setVisibility(View.VISIBLE);
+                    return;
                 }
-
-                progressBar.setVisibility(View.GONE);
-                recyclerView.setAdapter(adapt);
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    String ref = snapshot.getValue(String.class);
+                    refToday.add(FirebaseDatabase.getInstance("https://d-bet-98dcf-e1240.firebaseio.com/").getReferenceFromUrl(ref));
+                }
+                Collections.reverse(refToday);
+                adapterToday.addSection(new RecodeAdapter(refToday, PremiumActivity.this, PremiumActivity.this, userID));
+                adapterToday.notifyDataSetChanged();
+                listToday.setAdapter(adapterToday);
+                prgToday.setVisibility(View.GONE);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) { progressBar.setVisibility(View.GONE);
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseRefWon.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                adapterWon.removeAllSections();
+                refWon = new ArrayList<DatabaseReference>();
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    String ref = snapshot.getValue(String.class);
+                    refWon.add(FirebaseDatabase.getInstance("https://d-bet-98dcf-e1240.firebaseio.com/").getReferenceFromUrl(ref));
+                }
+                Collections.reverse(refWon);
+                adapterWon.addSection(new RecodeAdapter(refWon, PremiumActivity.this, PremiumActivity.this, userID));
+                adapterWon.notifyDataSetChanged();
+                listWon.setAdapter(adapterWon);
+                prgWon.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
 
-    public List<TipDetails> loadAll(DataSnapshot tipsSnap){
-        for (DataSnapshot datasnapshot : tipsSnap.getChildren()) {
-            TipDetails tips = datasnapshot.getValue(TipDetails.class);
-            list.add(tips);
-        }
-        return list;
+    public void loadTipsZero(){
+        databaseRefWon.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                adapterWon.removeAllSections();
+                refWon = new ArrayList<DatabaseReference>();
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    String ref = snapshot.getValue(String.class);
+                    refWon.add(FirebaseDatabase.getInstance("https://d-bet-98dcf-e1240.firebaseio.com/").getReferenceFromUrl(ref));
+                }
+                Collections.reverse(refWon);
+                adapterWon.addSection(new RecodeAdapter(refWon, PremiumActivity.this, PremiumActivity.this, userID));
+                adapterWon.notifyDataSetChanged();
+                listWon.setAdapter(adapterWon);
+                prgWon.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.premium_menu, menu);
+        return true;
     }
 
     public void setLayout() {
-        mfirebaseAuth = FirebaseAuth.getInstance();
-        user = mfirebaseAuth.getCurrentUser();
+        Cache cache = new Cache();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!= null) {
-            userID = user.getUid().toString();
-            mRef = FirebaseDatabase.getInstance().getReference("Active");
-            mRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.hasChild(userID)){
-                        loadTips();
-                        return;
-                    }else {
-                        requestSubscription();
-                        loadTipsZero();
-                        return;
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                }
-            });
-        } else {
-            requestSubscription();
+            if(cache.getVipsub()){
+                loadTips();
+                return;
+            }else {
+                listToday.setVisibility(View.GONE);
+                prgToday.setVisibility(View.GONE);
+                loadTipsZero();
+                return;
+            }
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "You haven't logged in", Toast.LENGTH_SHORT).show();
+            listToday.setVisibility(View.GONE);
+            prgToday.setVisibility(View.GONE);
             loadTipsZero();
         }
     }
 
     @Override
-    public void onClick(View view) {
-        Intent intent = null;
-        if (view.getId() == R.id.btnSub) {
-            if (user!=null){
-                intent = new Intent(this, SubscribeActivity.class);
-                startActivity(intent);
-            } else {
-                intent = new Intent(this, LoginActivity.class);
-                intent.putExtra("SENDER", 1);
-                startActivity(intent);
-                finish();
-            }
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnSub:
+                if (user!=null){
+                    startActivity(new Intent(this, SubscriptionReloadActivity.class));
+                }
+                else {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.putExtra("SENDER", 1);
+                    startActivity(intent);
+                    finish();
+                }
         }
     }
 
-    public void loadAds(){
-        Log.i("Dame", "loading ads");
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
-
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId()== R.id.mn_draws)
+            startActivity(new Intent(this, DrawActivity.class));
         finish();
         return true;
     }
-
-    public void requestSubscription(){
-        preToday.removeAllViews();
-        view = inflater.inflate(R.layout.activity_prestory, null);
-        preToday.addView(view);
-        btnSub = (Button) findViewById(R.id.btnSub);
-        btnSub.setOnClickListener(this);
-    }
-
 }

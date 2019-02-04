@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-es-rGT\\values-es-rGT.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Mendhie\\.gradle\\caches\\transforms-1\\files-1.1\\android-image-cropper-2.7.0.aar\\783b4e19f720f25e84491d1e83a34b65\\res\\values-es-rGT\\values-es-rGT.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,170,217,273,336,422,504,581,657",
+                        "endColumns": "114,46,55,62,85,81,76,75,78",
+                        "endOffsets": "165,212,268,331,417,499,576,652,731"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:id="@+id/lnrSub"
-android:orientation="vertical"
 android:layout_width="match_parent"
-android:layout_height="wrap_content"
+android:layout_height="160dp"
 android:gravity="center"
-android:background="@drawable/txtbck">
+android:background="@drawable/ctabutton">
 
-            <TextView
-                android:id="@+id/txtInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="36sp"
-                android:gravity="center"
-                android:textColor="#DE0B06"
-                android:textStyle="italic"
-                android:text="Only subscribers can view today's tips" />
-
-
-            <Button
-                android:id="@+id/btnSub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SUBSCRIBE"
-                android:textStyle="bold"
-                android:padding="3dp"
-                android:textSize="24sp"
-                android:background="@drawable/border"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_marginTop="40dp"
-                android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/btnSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SUBSCRIBE"
+        android:textSize="24sp"
+        style="@style/bale"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

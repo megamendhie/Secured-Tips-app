@@ -1,0 +1,7 @@
+#Fri Jan 25 16:40:49 WAT 2019
+base.0=C\:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\90
+path.1=classes2.dex
+renamed.1=classes2.dex
+path.0=classes.dex
+renamed.0=classes.dex
+base.1=C\:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\90

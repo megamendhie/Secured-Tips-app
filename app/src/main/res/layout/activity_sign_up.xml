@@ -42,7 +42,7 @@
                     android:text="Sign Up"
                     android:textStyle="bold"
                     android:layout_marginStart="20dp"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorAccent"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"/>
 
@@ -97,8 +97,7 @@
                 android:background="@android:drawable/editbox_background_normal"
                 android:ems="10"
                 android:hint="Select username"
-                android:inputType="textEmailAddress"
-                android:maxLength="12" />
+                android:maxLength="15" />
 
             <EditText
                 android:id="@+id/edtPhone"
@@ -107,9 +106,9 @@
                 android:layout_marginTop="15dp"
                 android:background="@android:drawable/editbox_background_normal"
                 android:ems="10"
-                android:hint="Phone no"
+                android:hint="Phone no (e.g: +234xxxxxxx)"
                 android:inputType="phone"
-                android:maxLength="12" />
+                android:maxLength="15" />
 
 
             <android.support.design.widget.TextInputLayout
@@ -167,9 +166,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:background="#EDBD23"
+                android:background="@color/colorAccent"
                 android:layout_marginTop="45dp"
                 android:text="Submit" />
 

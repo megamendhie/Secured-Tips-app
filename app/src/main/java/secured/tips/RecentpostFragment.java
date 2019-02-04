@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -17,11 +17,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import datafiles.Cache;
 import datafiles.ChatMessage;
-import datafiles.PostAdapter;
+import datafiles.PostAdapt;
+import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
 
 /**
@@ -29,16 +31,13 @@ import datafiles.PostAdapter;
  */
 public class RecentpostFragment extends Fragment {
     String userID, myUserID;
-    private final String TAG = "MyChatApp";
     private RecyclerView recyclerView;
     private DatabaseReference mRef;
-    TextView txtNotice;
+    boolean VipSub, ChatSub;
     Cache cache = new Cache();
     List<ChatMessage> chatMessages;
-    List<DatabaseReference> Refs = new ArrayList<DatabaseReference>();
-    private PostAdapter adapter;
-    FirebaseAuth auth;
-
+    List<DatabaseReference> Refs;
+    SectionedRecyclerViewAdapter adapt;
 
     public RecentpostFragment() {
         // Required empty public constructor
@@ -49,53 +48,54 @@ public class RecentpostFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView=inflater.inflate(R.layout.fragment_recentpost, container, false);
         recyclerView = rootView.findViewById(R.id.rvRecent);
-        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        txtNotice = rootView.findViewById(R.id.txtNotice);
-        chatMessages = new ArrayList<ChatMessage>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //UserID from firebase
         userID = cache.getUserID();
         mRef = FirebaseDatabase.getInstance("https://d-bet-98dcf-e1240.firebaseio.com/").getReference().child("chatrooms");
-        auth = FirebaseAuth.getInstance();
-        myUserID = auth.getUid().toString();
+        myUserID = FirebaseAuth.getInstance().getUid();
+        adapt = new SectionedRecyclerViewAdapter(){
+            @Override
+            public long getItemId(int position){
+                return position;
+            }
+
+            @Override
+            public void setHasStableIds(boolean hasStableIds) {
+                super.setHasStableIds(hasStableIds);
+            }
+        };
 
         mRef.keepSynced(true);
-        mRef.addValueEventListener(new ValueEventListener() {
+        if(userID.equals(myUserID)){
+            loadPostsMine();
+        }
+        else{
+            loadPosts();
+        }
+        return rootView;
+    }
+
+    public void loadPosts(){
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Refs.clear();
-                chatMessages.clear();
+               int k=0;
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    snapshot.getRef().orderByChild("messageUserId").equalTo(userID).limitToLast(10).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for(DataSnapshot snap : dataSnapshot.getChildren()){
-                                    chatMessages.add(snap.getValue(ChatMessage.class));
-                                    Refs.add(snap.getRef());
-                            }
-                            //Collections.reverse(chatMessages);
-                            //Collections.reverse(Refs);
-                            adapter = new PostAdapter(getContext(), chatMessages, myUserID, Refs);
-                            recyclerView.setLayoutManager(layoutManager);
-                            recyclerView.setAdapter(adapter);
-                            if(adapter.getItemCount()==0){
-                                txtNotice.setVisibility(View.VISIBLE);
-                            }
-                            else {
-                                txtNotice.setVisibility(View.GONE);
-                            }
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
+                    if(k>=1 && !confirmSubscribtion()){
+                        continue;
+                    }
+                    k++;
+                    final String roomName = snapshot.getKey();
+                    loadMessages(snapshot, roomName);
                 }
+                recyclerView.setAdapter(adapt);
             }
 
             @Override
@@ -103,7 +103,91 @@ public class RecentpostFragment extends Fragment {
 
             }
         });
+    }
 
-        return rootView;
+    public void loadPostsMine(){
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int k=0;
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    if(k>=2 && !confirmSubscribtion()){
+                        continue;
+                    }
+                    k++;
+                    final String roomName = snapshot.getKey();
+                    loadMessages(snapshot, roomName);
+                }
+                recyclerView.setAdapter(adapt);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void loadMessages(DataSnapshot snapshot, final String roomName){
+        snapshot.getRef().orderByChild("messageUserId").equalTo(userID).limitToLast(20)
+                .addValueEventListener(new ValueEventListener(){
+                    @Override
+                    public void onDataChange(DataSnapshot postSnapshot) {
+                        if(postSnapshot.hasChildren()) {
+                            chatMessages = new ArrayList<ChatMessage>();
+                            Refs = new ArrayList<DatabaseReference>();
+                            for (DataSnapshot snapshot : postSnapshot.getChildren()) {
+                                ChatMessage message = snapshot.getValue(ChatMessage.class);
+                                DatabaseReference ref = snapshot.getRef();
+                                Refs.add(ref);
+                                chatMessages.add(message);
+                            }
+                            Collections.reverse(Refs);
+                            Collections.reverse(chatMessages);
+                            adapt.addSection(roomName,new PostAdapt(getRoomName(roomName),
+                                    chatMessages, getContext(), getActivity(), myUserID, Refs));
+                            adapt.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    private String getRoomName(final String roomName){
+        switch (roomName){
+            case "room_1":
+                return "General Discussion";
+            case "room_2":
+                return "3-10 odds";
+            case "room_3":
+                return "11-50 odds";
+            case "room_4":
+                return "51-100 odds";
+            case "room_5":
+                return "151-350 odds";
+            case "room_6":
+                return "Sure banker";
+            case "room_7":
+                return "Draws";
+        }
+        return null;
+    }
+
+
+    public boolean confirmSubscribtion(){
+        boolean subscriber = false;
+        VipSub = Cache.getVipsub();
+        ChatSub =  Cache.getRoomSub();
+        Log.i("Faster", "vipsub is " + String.valueOf(VipSub) + ", chatsub is " + String.valueOf(ChatSub));
+
+        if(VipSub || ChatSub){
+            subscriber = true;
+        }
+
+        return subscriber;
     }
 }

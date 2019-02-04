@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/tools"
+    tools:context=".ContactActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/contact" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/crdWhatsapp"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="236dp"
+        android:clickable="true"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        android:elevation="6dp"
+        card_view:cardUseCompatPadding="true"
+        android:padding="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#60be6b"
+            android:padding="6dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/whatsapp"/>
+
+            <TextView
+                android:id="@+id/txtWhatsapp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="normal|bold"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:text="WHATSAPP" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/crdTelegram"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="175dp"
+        android:clickable="true"
+        android:elevation="6dp"
+        android:padding="2dp"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        card_view:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#46abd7"
+            android:gravity="center_vertical"
+            android:padding="6dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/telgram" />
+
+            <TextView
+                android:id="@+id/txtTelegram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TELEGRAM"
+                android:textColor="@android:color/white"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -19,13 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:background="#C5E1A5"
+            android:background="#A5D6A7"
             android:textColor="@android:color/black"/>
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#BBDEFB"
+            android:background="#4FC3F7"
             android:src="@drawable/chat"/>
 
             <TextView
@@ -41,15 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="#FFAB91"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:id="@+id/txtGuideline4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:background="#BBDEFB"
+                android:background="#F48FB1"
                 android:textColor="@android:color/black"/>
 
         </LinearLayout>

@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
+    android:orientation="horizontal"
     xmlns:card_view="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgDps"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="4dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#bbd4b8"/>
 
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
+        android:layout_toRightOf="@id/imgDp"
+        android:layout_marginEnd="15dp"
         card_view:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="6dp"
         android:elevation="10dp">
 
         <LinearLayout
@@ -37,7 +49,7 @@
                     android:layout_weight="1"
                     android:paddingStart="6dp"
                     android:textColor="@color/colorAccent"
-                    android:text="Motherfuker"
+                    android:text="username"
                     android:textStyle="normal|bold" />
 
 
@@ -75,7 +87,7 @@
                 android:layout_height="1dp"
                 android:background="#26abc2"/>
 
-            <TextView
+            <datafiles.ExpandableTextView
                 android:id="@+id/message_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,9 +95,7 @@
                 android:paddingEnd="6dp"
                 android:layout_marginTop="2dp"
                 android:textIsSelectable="true"
-                android:autoLink="web"
-                android:textColorLink="#1564d4"
-                android:text="Okadjdjd FISTh"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp" />
 
@@ -109,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="6dp"
                     android:layout_weight="1.5"
-                    android:text="23-04-2018(01:23am)" />
+                    android:text="01-01-2001(00:00am)" />
 
                 <ImageView
                     android:id="@+id/imgLikes"
@@ -135,4 +145,4 @@
 
 
     </android.support.v7.widget.CardView>
-</RelativeLayout>
+</LinearLayout>

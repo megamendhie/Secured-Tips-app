@@ -2,16 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:layout_marginBottom="4dp"
+    android:clipToPadding="false"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
     xmlns:card_view="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <android.support.v7.widget.CardView
+        android:id="@+id/crdPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         card_view:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="6dp"
         android:elevation="10dp">
 
         <LinearLayout
@@ -37,7 +43,7 @@
                     android:layout_weight="1"
                     android:paddingStart="6dp"
                     android:textColor="#C51162"
-                    android:text="Motherfuker"
+                    android:text="username"
                     android:textStyle="normal|bold" />
 
 
@@ -59,6 +65,15 @@
                     android:textColor="#038b1e"
                     android:textStyle="normal|bold" />
 
+                <ImageView
+                    android:id="@+id/imgDropdwon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:scaleType="fitXY"
+                    android:tag="in"
+                    android:layout_margin="1dp"
+                    android:src="@drawable/dropdown"/>
+
             </LinearLayout>
 
             <View
@@ -66,7 +81,7 @@
                 android:layout_height="1dp"
                 android:background="#26abc2"/>
 
-            <TextView
+            <datafiles.ExpandableTextView
                 android:id="@+id/message_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,8 +90,8 @@
                 android:layout_marginTop="2dp"
                 android:textIsSelectable="true"
                 android:autoLink="web"
-                android:textColorLink="#1564d4"
-                android:text="Okadjdjd FISTh live if your sitll wann be stupid, then feel free, but thdo m o ng hgjdn "
+                android:textColorLink="@color/hastag"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp" />
 
@@ -100,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="6dp"
                     android:layout_weight="1.5"
-                    android:text="23-04-2018(01:23am)" />
+                    android:text="01-01-2001(00:00am)" />
 
                 <ImageView
                     android:id="@+id/imgLikes"
