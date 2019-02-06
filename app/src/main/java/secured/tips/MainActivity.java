@@ -595,7 +595,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected String doInBackground(String... args) {
             String xml = "";
 
-            String urlParameters = "";xml = NewsFunction.excuteGet("https://newsapi.org/v2/everything?domains=espnfc.com&language=en&pageSize=20&apiKey="+myAPI_Key, urlParameters);
+            String urlParameters = "";
+            xml = NewsFunction.excuteGet("https://newsapi.org/v2/everything?domains=espnfc.com&language=en&pageSize=20&apiKey="+myAPI_Key, urlParameters);
             return  xml;
         }
         @Override

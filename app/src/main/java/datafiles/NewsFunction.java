@@ -22,8 +22,6 @@ public class NewsFunction {
             //Create connection
             url = new URL(targetURL);
             connection = (HttpURLConnection) url.openConnection();
-            //connection.setRequestMethod("POST");
-            //connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setRequestProperty("content-type", "application/json;  charset=utf-8");
 
 
