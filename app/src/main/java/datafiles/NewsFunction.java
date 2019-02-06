@@ -31,7 +31,6 @@ public class NewsFunction {
             connection.setDoInput(true);
             connection.setDoOutput(false);
 
-
             InputStream is;
 
             int status = connection.getResponseCode();
@@ -42,14 +41,14 @@ public class NewsFunction {
                 is = connection.getInputStream();
 
 
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
             StringBuffer response = new StringBuffer();
-            while ((line = rd.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 response.append(line);
                 response.append('\r');
             }
-            rd.close();
+            reader.close();
             return response.toString();
 
         } catch (Exception e) {
