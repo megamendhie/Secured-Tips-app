@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -157,8 +158,13 @@ public class FreeActivity extends AppCompatActivity implements View.OnClickListe
 
     public List<TipDetails> loadAll(DataSnapshot tipsSnap) {
         for (DataSnapshot datasnapshot : tipsSnap.getChildren()) {
-            TipDetails tips = datasnapshot.getValue(TipDetails.class);
-            list.add(tips);
+            try{
+                TipDetails tips = datasnapshot.getValue(TipDetails.class);
+                list.add(tips);
+            }
+            catch (DatabaseException e){
+                Log.i("FATAL ERROR", e.toString());
+            }
         }
         return list;
     }
