@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view); navigationView.setNavigationItemSelectedListener(this);
         header = navigationView.getHeaderView(0);
         imgDp = header.findViewById(R.id.imgProfilePic); imgDp.setOnClickListener(this);
@@ -139,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnProfile = header.findViewById(R.id.btnProfile); btnProfile.setOnClickListener(this);
         nativeAdContainer = findViewById(R.id.native_ad_container);
         inflater = LayoutInflater.from(MainActivity.this);
-        mDrawerLayout = findViewById(R.id.drawer_layout);
 
         crdProfile = findViewById(R.id.crdProfile); crdProfile.setOnClickListener(this);
         crdForum = findViewById(R.id.crdForum); crdForum.setOnClickListener(this);

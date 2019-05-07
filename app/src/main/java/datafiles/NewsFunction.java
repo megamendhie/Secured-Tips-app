@@ -52,8 +52,6 @@ public class NewsFunction {
             return response.toString();
 
         } catch (Exception e) {
-
-
             return null;
 
         } finally {

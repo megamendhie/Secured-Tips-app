@@ -56,22 +56,6 @@ public class CacheHelper {
             File cache = new File(getCacheDirectory(context) + "/" + key + ".srl");
 
             if (cache.exists()) {
-                /*
-                Date lastModDate = new Date(cache.lastModified());
-                Date now = new Date();
-
-                long diffInMillisec = now.getTime() - lastModDate.getTime();
-                long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMillisec);
-
-                diffInSec /= 60;
-                diffInSec /= 60;
-                long hours = diffInSec % 24;
-
-                if (hours > cacheLifeHour) {
-                    cache.delete();
-                    return "";
-                }
-                */
 
                 ObjectInputStream in = new ObjectInputStream(new FileInputStream(cache));
                 String value = in.readUTF();
