@@ -13,8 +13,7 @@ Available on Google Play Store with over 7000 users. Check it out.
 
 ## User Registration
 
-New members sign up with their email and password. Firebase Authentication handles the user authentication and the information is stored on Firebase Realtime Database with security rules updated for privacy. 
-![Registration](https://raw.githubusercontent.com/megamendhie/Secured-Tips-app/media/img5.png)
+New members sign up with their email and password. Firebase Authentication handles the user authentication and the information is stored on Firebase Realtime Database with security rules updated for privacy. ![Registration](https://raw.githubusercontent.com/megamendhie/Secured-Tips-app/media/img5.png)
 
 ## Profile Management
 
@@ -24,9 +23,7 @@ Implemented elements and features:
 -   Pick image from gallery or take photo
 -   TextView for user data
 -   Firebase storage for image storage.
--   Realtime Database for text data
-
-![Profile](https://raw.githubusercontent.com/megamendhie/Secured-Tips-app/media/img7.png)
+-   Realtime Database for text data![Profile](https://raw.githubusercontent.com/megamendhie/Secured-Tips-app/media/img7.png)
 
 ## Chats and Discussion
 
@@ -39,6 +36,7 @@ Implemented elements and features:
 -   Collapse/expand text in the long post
 -   Real time update of posts
 -   Verification of won predictions
+
 ![room1](https://raw.githubusercontent.com/megamendhie/Secured-Tips-app/media/img2.png)
 
 ![room2](https://raw.githubusercontent.com/megamendhie/Secured-Tips-app/media/img6.png)
