@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
-INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
-INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
-INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
+INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
+INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
+INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
 MERGED from [com.android.support:multidex:1.0.2] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\3a16522d3f81ed86c9797ab55576f552\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-inappmessaging-display:17.0.2] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\firebase-inappmessaging-display-17.0.2.aar\e865973bd35293c48dd2bdd68c6aea12\AndroidManifest.xml:2:1-22:12
 MERGED from [com.google.firebase:firebase-core:16.0.4] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.4.aar\dba7b6914011c4495317e468b96f4c9d\AndroidManifest.xml:2:1-9:12
@@ -75,20 +75,20 @@ MERGED from [com.google.android.gms:play-services-measurement-base:16.0.3] C:\Us
 MERGED from [com.google.firebase:protolite-well-known-types:16.0.0] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\protolite-well-known-types-16.0.0.aar\c80de059363bc0ec9f18f3a16cc0423f\AndroidManifest.xml:2:1-11:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.2.aar\a1c540e5e0407765c9288a14be5312fa\AndroidManifest.xml:15:1-21:12
 MERGED from [com.google.android.gms:play-services-ads-base:16.0.0] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-16.0.0.aar\3a437ef0c5069778e242f33c2a0493ce\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
-INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
-INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
+INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
+INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
+INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
 	package
 		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:3:5-27
 		INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
 		INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-104:12
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:1-90:12
 		INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:2:11-69
@@ -143,7 +143,7 @@ ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.
 	android:name
 		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:12:9-79
 application
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:15:5-102:19
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:15:5-88:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display:17.0.2] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\firebase-inappmessaging-display-17.0.2.aar\e865973bd35293c48dd2bdd68c6aea12\AndroidManifest.xml:14:5-20:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display:17.0.2] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\firebase-inappmessaging-display-17.0.2.aar\e865973bd35293c48dd2bdd68c6aea12\AndroidManifest.xml:14:5-20:19
 MERGED from [com.google.firebase:firebase-core:16.0.4] C:\Users\Mendhie\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.4.aar\dba7b6914011c4495317e468b96f4c9d\AndroidManifest.xml:7:5-20
@@ -266,130 +266,98 @@ ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.
 		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:42:13-36
 	android:name
 		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:41:13-43
-activity#secured.tips.OverOneActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:43:9-45:43
-	android:label
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:45:13-40
-	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:44:13-44
-activity#secured.tips.OverTwoActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:46:9-48:43
-	android:label
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:48:13-40
-	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:47:13-44
 activity#secured.tips.DrawActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:49:9-51:40
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:43:9-45:40
 	android:label
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:51:13-37
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:45:13-37
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:50:13-41
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:44:13-41
 activity#secured.tips.FloatingActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:52:9-54:82
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:46:9-48:82
 	android:theme
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:54:13-79
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:48:13-79
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:53:13-45
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:47:13-45
 activity#com.theartofdev.edmodo.cropper.CropImageActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:55:9-57:59
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:49:9-51:59
 	android:theme
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:57:13-56
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:51:13-56
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:56:13-76
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:50:13-76
 service#datafiles.MyFirebaseServicee
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:59:9-65:19
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:53:9-59:19
 	android:permission
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:60:13-73
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:54:13-73
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:59:18-61
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:53:18-61
 intent-filter#action:name:com.google.android.c2dm.permission.RECEIVE+action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:61:13-64:29
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:55:13-58:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:62:17-78
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:56:17-78
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:62:25-75
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:56:25-75
 action#com.google.android.c2dm.permission.RECEIVE
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:63:17-84
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:57:17-84
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:63:25-82
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:57:25-82
 service#datafiles.MyService
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:66:9-70:19
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:60:9-64:19
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:66:18-52
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:60:18-52
 intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:67:13-69:29
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:61:13-63:29
 action#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:68:17-80
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:62:17-80
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:68:25-77
-activity#secured.tips.PaystackActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:72:9-54
-	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:72:19-51
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:62:25-77
 activity#secured.tips.VipPageActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:73:9-75:38
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:66:9-68:38
 	android:label
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:75:13-35
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:68:13-35
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:74:13-44
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:67:13-44
 activity#secured.tips.MyProfileActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:76:9-55
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:69:9-55
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:76:19-52
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:69:19-52
 activity#secured.tips.RoomsPageActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:77:9-79:42
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:70:9-72:42
 	android:label
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:79:13-39
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:72:13-39
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:78:13-46
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:71:13-46
 activity#secured.tips.AboutTipzoneActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:80:9-58
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:73:9-58
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:80:19-55
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:73:19-55
 activity#secured.tips.ChatRoomActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:81:9-84:70
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:74:9-77:70
 	android:label
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:83:13-39
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:76:13-39
 	android:windowSoftInputMode
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:84:13-67
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:77:13-67
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:82:13-45
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:75:13-45
 activity#secured.tips.MemberProfileActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:85:9-87:46
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:78:9-80:46
 	android:launchMode
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:87:13-43
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:80:13-43
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:86:13-50
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:79:13-50
 activity#secured.tips.ProfileEditActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:88:9-90:70
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:81:9-83:70
 	android:windowSoftInputMode
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:90:13-67
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:83:13-67
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:89:13-48
-activity#secured.tips.SubscriptionReloadActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:91:9-93:82
-	android:theme
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:93:13-79
-	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:92:13-55
-activity#secured.tips.NewsActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:94:9-96:52
-	android:label
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:96:13-49
-	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:95:13-41
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:82:13-48
 activity#secured.tips.NewsStoryActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:97:9-100:50
+ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:84:9-87:50
 	android:hardwareAccelerated
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:100:13-47
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:87:13-47
 	android:allowBackup
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:99:13-39
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:86:13-39
 	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:98:13-46
-activity#secured.tips.ContactActivity
-ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:101:9-53
-	android:name
-		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:101:19-50
+		ADDED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml:85:13-46
 uses-sdk
 INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Mendhie\workspace\SecuredTips2\app\src\main\AndroidManifest.xml

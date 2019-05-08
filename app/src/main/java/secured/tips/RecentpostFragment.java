@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,48 +72,16 @@ public class RecentpostFragment extends Fragment {
         };
 
         mRef.keepSynced(true);
-        if(userID.equals(myUserID)){
-            loadPostsMine();
-        }
-        else{
-            loadPosts();
-        }
+        loadPosts();
         return rootView;
     }
 
+    //loads posts from database
     public void loadPosts(){
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-               int k=0;
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    if(k>=1 && !confirmSubscribtion()){
-                        continue;
-                    }
-                    k++;
-                    final String roomName = snapshot.getKey();
-                    loadMessages(snapshot, roomName);
-                }
-                recyclerView.setAdapter(adapt);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    public void loadPostsMine(){
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int k=0;
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    if(k>=2 && !confirmSubscribtion()){
-                        continue;
-                    }
-                    k++;
                     final String roomName = snapshot.getKey();
                     loadMessages(snapshot, roomName);
                 }
@@ -177,17 +144,4 @@ public class RecentpostFragment extends Fragment {
         return null;
     }
 
-
-    public boolean confirmSubscribtion(){
-        boolean subscriber = false;
-        VipSub = Cache.getVipsub();
-        ChatSub =  Cache.getRoomSub();
-        Log.i("Faster", "vipsub is " + String.valueOf(VipSub) + ", chatsub is " + String.valueOf(ChatSub));
-
-        if(VipSub || ChatSub){
-            subscriber = true;
-        }
-
-        return subscriber;
-    }
 }

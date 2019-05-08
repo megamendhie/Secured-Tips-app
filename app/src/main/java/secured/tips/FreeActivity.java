@@ -20,8 +20,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -94,10 +92,6 @@ public class FreeActivity extends AppCompatActivity implements View.OnClickListe
         btnVip = findViewById(R.id.btnVip); btnVip.setOnClickListener(this);
         btnTipzone = findViewById(R.id.btnTipzone); btnTipzone.setOnClickListener(this);
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-4597711656812814/1799989807");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
         LinearLayoutManager lnrManager = new LinearLayoutManager(getApplicationContext());
         lnrManager.setReverseLayout(true);
         lnrManager.setStackFromEnd(true);
@@ -117,12 +111,6 @@ public class FreeActivity extends AppCompatActivity implements View.OnClickListe
             login = true;
             setHeader();
         }
-
-        mInterstitialAd.setAdListener(new AdListener(){
-            public void onAdLoaded(){
-                mInterstitialAd.show();
-            }
-        });
     }
 
     public void loadTips(){
@@ -294,12 +282,6 @@ public class FreeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.nav_tipzone:
                 finish();
                 startActivity(new Intent(getApplicationContext(), RoomsPageActivity.class));
-                break;
-            case R.id.nav_subscribe:
-                startActivity(new Intent(this, SubscriptionReloadActivity.class));
-                break;
-            case R.id.nav_contact:
-                startActivity(new Intent(getApplicationContext(), ContactActivity.class));
                 break;
         }
         return true;

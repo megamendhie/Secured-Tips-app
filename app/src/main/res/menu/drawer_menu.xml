@@ -17,13 +17,5 @@
             android:id="@+id/nav_tipzone"
             android:icon="@drawable/ic_group_black_24dp"
             android:title="@string/tipzone_name" />
-        <item
-            android:id="@+id/nav_subscribe"
-            android:icon="@drawable/ic_offline_pin_black_24dp"
-            android:title="@string/subscription_name" />
-        <item
-            android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_message_black_24dp"
-            android:title="@string/contact_name" />
     </group>
 </menu>

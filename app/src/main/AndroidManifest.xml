@@ -41,12 +41,6 @@
             android:name=".SignUpActivity"
             android:label="Sign Up" />
         <activity
-            android:name=".OverOneActivity"
-            android:label="   Over 1.5" />
-        <activity
-            android:name=".OverTwoActivity"
-            android:label="   Over 2.5" />
-        <activity
             android:name=".DrawActivity"
             android:label="   Draws" />
         <activity
@@ -69,7 +63,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".PaystackActivity" />
         <activity
             android:name=".VipPageActivity"
             android:label="   VIP" />
@@ -89,16 +82,9 @@
             android:name=".ProfileEditActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".SubscriptionReloadActivity"
-            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
-        <activity
-            android:name=".NewsActivity"
-            android:label="   Secured Tips News" />
-        <activity
             android:name=".NewsStoryActivity"
             android:allowBackup="true"
             android:hardwareAccelerated="true" />
-        <activity android:name=".ContactActivity" />
     </application>
 
 </manifest>

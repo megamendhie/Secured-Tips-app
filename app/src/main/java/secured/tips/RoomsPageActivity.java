@@ -16,17 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,9 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import datafiles.Cache;
 import datafiles.ChatMessage;
@@ -69,8 +63,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
     Button btnAbout;
     RecyclerView listRecommended;
     SectionedRecyclerViewAdapter adapter;
-    boolean VipSub, ChatSub;
-    long counter = 16;
     String firstName =", Tipster";
     List<ChatMessage> wonGames;
     List<DatabaseReference> Refs;
@@ -106,8 +98,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
 
         btnAbout = findViewById(R.id.btnAbout);
         btnAbout.setOnClickListener(this);
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-4597711656812814/1799989807");
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if(user!=null){
@@ -116,7 +106,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
             mDatabase = FirebaseDatabase.getInstance("https://d-bet-98dcf-e81ed.firebaseio.com/").getReference().child("Users").child(userID);
             mDatabase.keepSynced(true);
             setHeader();
-            getCounter();
         }
 
         mRef = FirebaseDatabase.getInstance("https://d-bet-98dcf-e1240.firebaseio.com/").getReference()
@@ -194,48 +183,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
                 .show();
     }
 
-    public void popUp2(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
-        builder.setMessage("Welcome " + firstName
-                +".\n\nYour access to this room may have expired. Subscribe now to access ALL the rooms. " +
-                "You will enjoy winning tips from good tipsters.")
-                .setPositiveButton("Subscribe now", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(getApplicationContext(),  SubscriptionReloadActivity.class));
-                    }
-                })
-                .setNegativeButton("Later", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //do nothing
-                    }
-                })
-                .show();
-    }
-
-    public void popUp3(int d){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
-        builder.setCancelable(false).setMessage("Hi " + firstName
-                +".\n\nYou have "+ d+" free access left.")
-                .setPositiveButton("Subscribe now", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        startActivity(new Intent(getApplicationContext(),  SubscriptionReloadActivity.class));
-                    }
-                })
-                .setNegativeButton("Later", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
-                        intent.putExtra("ROOM",2);
-                        startActivity(intent);
-                        //do nothing
-                    }
-                })
-                .show();
-    }
-
     public void popUp4(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
         builder.setMessage("Hello " + firstName
@@ -247,22 +194,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
                     }
                 })
                 .show();
-    }
-
-
-    public void loadAds(){
-        editor = prefs.edit();
-        int adCount = prefs.getInt("ADCOUNT", 1);
-        if(adCount%5==0) {
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            mInterstitialAd.setAdListener(new AdListener(){
-                public void onAdLoaded(){
-                    mInterstitialAd.show();
-                }
-            });
-        }
-        adCount+=1;
-        editor.putInt("ADCOUNT", adCount).apply();
     }
 
     @Override
@@ -289,23 +220,12 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
                     popUp();
                     return;
                 }
-                if(!confirmSubscribtion()){
-                    if(!checkCount()){
-                        popUp2();
-                    }
-                }
-                else {
-                    intent.putExtra("ROOM",2);
-                    startActivity(intent);
-                }
+                intent.putExtra("ROOM",2);
+                startActivity(intent);
                 break;
             case R.id.crdRoomThree:
                 if(user==null){
                     popUp();
-                    return;
-                }
-                if(!confirmSubscribtion()){
-                    popUp2();
                     return;
                 }
                 intent.putExtra("ROOM",3);
@@ -316,10 +236,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
                     popUp();
                     return;
                 }
-                if(!confirmSubscribtion()){
-                    popUp2();
-                    return;
-                }
                 intent.putExtra("ROOM",4);
                 startActivity(intent);
                 break;
@@ -328,28 +244,16 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
                     popUp();
                     return;
                 }
-                if(!confirmSubscribtion()){
-                    popUp2();
-                    return;
-                }
                 popUp4();
-                //intent.putExtra("ROOM",5);
-                //startActivity(intent);
                 break;
             case R.id.crdRoomSeven:
                 if(user==null){
                     popUp();
                     return;
                 }
-                if(!confirmSubscribtion()){
-                    popUp2();
-                    return;
-                }
                 intent.putExtra("ROOM",7);
                 startActivity(intent);
                 break;
-            case R.id.btnSubmit:
-                Toast.makeText(this, "Submitted", Toast.LENGTH_SHORT).show();
             case R.id.btnAbout:
                 startActivity(new Intent(getApplicationContext(), AboutTipzoneActivity.class));
                 break;
@@ -373,9 +277,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.nav_home:
                 finish();
-                break;
-            case R.id.menu_contact:
-                startActivity(new Intent(getApplicationContext(), ContactActivity.class));
                 break;
             case R.id.menu_share:
                 shareApp();
@@ -410,55 +311,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
         startActivity(Intent.createChooser(share, "Invite a friend via:"));
     }
 
-    public boolean checkCount(){
-        if(counter>15){
-            return false;
-        }
-        else{
-            counter++;
-            Map<String, Object> updates = new HashMap<>();
-            updates.put("b0_k", counter);
-            mDatabase.updateChildren(updates);
-            Log.i("Session: ", "running with counter of "+ counter);
-            if(counter==5){
-                popUp3(10);
-            }
-            else if(counter==10){
-                popUp3(5);
-            }
-            else if(counter==15){
-                popUp3(0);
-            }
-            else {
-                Intent intent = new Intent(getApplicationContext(), ChatRoomActivity.class);
-                intent.putExtra("ROOM",2);
-                startActivity(intent);
-            }
-        }
-        return true;
-    }
-
-    public void getCounter(){
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                firstName = dataSnapshot.child("a1_firstname").getValue(String.class);
-                if(dataSnapshot.hasChild("b0_k")){
-                    counter = dataSnapshot.child("b0_k").getValue(long.class);
-                    Log.i("Session listener: ", "running with counter of "+ counter);
-                }
-                else{
-                    Map<String, Object> updates = new HashMap<>();
-                    updates.put("b0_k", 0);
-                    mDatabase.updateChildren(updates);
-                    counter=0;
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) { }
-        });
-    }
-
     @Override
     public void onResume(){
         super.onResume();
@@ -473,10 +325,8 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
                 login=true;
                 showRecommendedMesseges();
                 setHeader();
-                getCounter();
             }
         }
-        loadAds();
     }
 
     public void setHeader(){
@@ -508,18 +358,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    public boolean confirmSubscribtion(){
-        boolean subscriber = false;
-        VipSub = Cache.getVipsub();
-        ChatSub =  Cache.getRoomSub();
-        Log.i("Faster", "vipsub is " + String.valueOf(VipSub) + ", chatsub is " + String.valueOf(ChatSub));
-
-        if(VipSub || ChatSub){
-            subscriber = true;
-        }
-        return subscriber;
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -537,12 +375,6 @@ public class RoomsPageActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.nav_tipzone:
                 mDrawerLayout.closeDrawer(GravityCompat.START);
-                break;
-            case R.id.nav_subscribe:
-                startActivity(new Intent(this, SubscriptionReloadActivity.class));
-                break;
-            case R.id.nav_contact:
-                startActivity(new Intent(getApplicationContext(), ContactActivity.class));
                 break;
         }
         return true;

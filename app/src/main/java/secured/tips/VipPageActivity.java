@@ -48,7 +48,6 @@ public class VipPageActivity extends AppCompatActivity implements View.OnClickLi
     View header;
     private boolean login = false;
     RequestOptions requestOptions = new RequestOptions();
-    TextView txtSub, txtChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +63,6 @@ public class VipPageActivity extends AppCompatActivity implements View.OnClickLi
         btnProfile = header.findViewById(R.id.btnProfile); btnProfile.setOnClickListener(this);
         crdVip = findViewById(R.id.crdVIP); crdVip.setOnClickListener(this);
         crdDraws = findViewById(R.id.crdDraw); crdDraws.setOnClickListener(this);
-        txtSub = findViewById(R.id.txtSubscribe); txtChat = findViewById(R.id.txtChat);
-        txtSub.setOnClickListener(this);    txtChat.setOnClickListener(this);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -109,12 +106,6 @@ public class VipPageActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.crdDraw:
                 startActivity(new Intent(this, DrawActivity.class));
-                break;
-            case R.id.txtChat:
-                startWhatsApp();
-                break;
-            case R.id.txtSubscribe:
-                startActivity(new Intent(this, SubscriptionReloadActivity.class));
                 break;
         }
     }
@@ -229,12 +220,6 @@ public class VipPageActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.nav_tipzone:
                 finish();
                 startActivity(new Intent(getApplicationContext(), RoomsPageActivity.class));
-                break;
-            case R.id.nav_subscribe:
-                startActivity(new Intent(this, SubscriptionReloadActivity.class));
-                break;
-            case R.id.nav_contact:
-                startActivity(new Intent(getApplicationContext(), ContactActivity.class));
                 break;
         }
         return true;

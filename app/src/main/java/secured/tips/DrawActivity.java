@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import datafiles.Cache;
 import datafiles.RecodeAdapter;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
@@ -38,7 +37,6 @@ public class DrawActivity extends AppCompatActivity implements View.OnClickListe
     FirebaseDatabase database;
     FirebaseUser user;
     String userID="x";
-    private boolean login = false;
     ActionBar actionBar;
     Button btnSub;
     CardView crdSub, crdEmpty;
@@ -77,7 +75,6 @@ public class DrawActivity extends AppCompatActivity implements View.OnClickListe
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if(user!=null){
-            login = true;
             userID = user.getUid();
             mDatabase = FirebaseDatabase.getInstance("https://d-bet-98dcf-e81ed.firebaseio.com/").getReference().child("Users").child(userID);
             mDatabase.keepSynced(true);
@@ -189,18 +186,10 @@ public class DrawActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void setLayout() {
-        Cache cache = new Cache();
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!= null) {
-            if(cache.getVipsub()){
-                loadTips();
-                return;
-            }else {
-                listToday.setVisibility(View.GONE);
-                prgToday.setVisibility(View.GONE);
-                loadTipsZero();
-                return;
-            }
+            loadTips();
+            return;
         }
         else {
             Toast.makeText(getApplicationContext(), "You haven't logged in", Toast.LENGTH_SHORT).show();
@@ -214,15 +203,11 @@ public class DrawActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnSub:
-                if (user!=null){
-                    startActivity(new Intent(this, SubscriptionReloadActivity.class));
-                }
-                else {
-                    Intent intent = new Intent(this, LoginActivity.class);
-                    intent.putExtra("SENDER", 2);
-                    startActivity(intent);
-                    finish();
-                }
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.putExtra("SENDER", 2);
+                startActivity(intent);
+                finish();
+                break;
         }
     }
 

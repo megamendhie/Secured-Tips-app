@@ -148,31 +148,6 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/txtSubscribe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Subscribe here"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="30dp"
-                    style="@style/bale"
-                    android:textSize="18sp"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/txtChat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="For any enquiry, chat us  "
-                    android:layout_gravity="end"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="8dp"
-                    android:textColor="@color/rm6"
-                    android:gravity="center"
-                    android:drawableRight="@drawable/whatsapp_chat"
-                    android:layout_marginTop="26dp"/>
-
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 

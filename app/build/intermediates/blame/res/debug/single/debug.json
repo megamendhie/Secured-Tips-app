@@ -156,10 +156,6 @@
         "source": "C:\\Users\\Mendhie\\.gradle\\caches\\transforms-1\\files-1.1\\rave-android-1.0.32.aar\\9818e9b7de307c57b186227b80b935c5\\res\\drawable\\green_btn_curved.xml"
     },
     {
-        "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_draws.xml.flat",
-        "source": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\src\\main\\res\\layout\\activity_draws.xml"
-    },
-    {
         "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_collapse.xml.flat",
         "source": "C:\\Users\\Mendhie\\.gradle\\caches\\transforms-1\\files-1.1\\firebase-inappmessaging-display-17.0.2.aar\\e865973bd35293c48dd2bdd68c6aea12\\res\\drawable\\collapse.xml"
     },
@@ -414,10 +410,6 @@
     {
         "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Mendhie\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\3dc179ec14c983aa045734238a85a16f\\res\\drawable-xhdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_premium.xml.flat",
-        "source": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\src\\main\\res\\layout\\activity_premium.xml"
     },
     {
         "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_trend.png.flat",
@@ -2096,10 +2088,6 @@
         "source": "C:\\Users\\Mendhie\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\3dc179ec14c983aa045734238a85a16f\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_subscription_reload.xml.flat",
-        "source": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\src\\main\\res\\layout\\activity_subscription_reload.xml"
-    },
-    {
         "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\layout_room_header.xml.flat",
         "source": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\src\\main\\res\\layout\\room_header.xml"
     },
@@ -2202,10 +2190,6 @@
     {
         "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\Mendhie\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\3dc179ec14c983aa045734238a85a16f\\res\\drawable-hdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
-    },
-    {
-        "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_contact.xml.flat",
-        "source": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\src\\main\\res\\layout\\activity_contact.xml"
     },
     {
         "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
@@ -2990,10 +2974,6 @@
     {
         "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_sign_up.xml.flat",
         "source": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\src\\main\\res\\layout\\activity_sign_up.xml"
-    },
-    {
-        "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_paystack.xml.flat",
-        "source": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\src\\main\\res\\layout\\activity_paystack.xml"
     },
     {
         "merged": "C:\\Users\\Mendhie\\workspace\\SecuredTips2\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_screen_toolbar.xml.flat",
